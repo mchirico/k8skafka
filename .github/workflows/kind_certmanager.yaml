@@ -1,5 +1,5 @@
 
-name: Kind CertManager
+name: Kind_CertManager
 
 on:
   push:

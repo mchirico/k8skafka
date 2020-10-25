@@ -1,4 +1,4 @@
-package temperature
+package readings
 
 import (
 	"encoding/json"

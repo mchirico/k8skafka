@@ -1,4 +1,4 @@
-package temperature
+package readings
 
 import (
 	"math/rand"
@@ -21,5 +21,5 @@ func TestGenerateTemperature(t *testing.T) {
 	if !(temperature.Celcius < 26 && temperature.Celcius > 25) {
 		t.Fatalf("Expected: %s, Got: %v", "25.30..", temperature.Celcius)
 	}
-	t.Logf("temperature: %v\n", temperature)
+	t.Logf("readings: %v\n", temperature)
 }

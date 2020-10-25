@@ -39,6 +39,16 @@ jobs:
         go test -race -v -coverprofile=coverage1.txt ./pkg/wrapper
 
 
+    - name: Test pubsub
+      run: |
+        go test -race -v -coverprofile=coverage2.txt ./temperature/pubsub
+
+
+    - name: Test readings
+      run: |
+        go test -race -v -coverprofile=coverage3.txt ./temperature/readings
+
+
     - name: Codecov Setup
       uses: codecov/codecov-action@v1
       with:

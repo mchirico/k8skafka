@@ -41,9 +41,10 @@ func stopKafka() {
 func TestPub(t *testing.T) {
 	timeOuts := 10
 
-	go Pub(timeOuts)
+	broker :=  "localhost:29099"
+	go Pub(timeOuts,broker)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(timeOuts)*time.Second)
 	defer cancel()
-	Sub(ctx, timeOuts)
+	Sub(ctx,broker, timeOuts)
 }

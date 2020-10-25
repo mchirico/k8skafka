@@ -33,9 +33,8 @@ func (m *Msg) Send(msgbyte chan []byte) {
 
 }
 
-func Pub(timeOutSeconds int) error {
+func Pub(timeOutSeconds int,broker string) error {
 	topic := "celcius-readings"
-	broker := "localhost:29099"
 	numparts := 1
 
 	ps, err := wrapper.Create(topic, broker, numparts)
@@ -69,9 +68,9 @@ func Pub(timeOutSeconds int) error {
 	return nil
 }
 
-func Sub(ctx context.Context, timeOutSeconds int) {
+func Sub(ctx context.Context,broker string, timeOutSeconds int) {
 	topic := "celcius-readings"
-	broker := "localhost:29099"
+
 	// Read
 	msgchan := make(chan kafka.Message, 1)
 	errorchan := make(chan error, 1)

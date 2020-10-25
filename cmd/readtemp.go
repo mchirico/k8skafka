@@ -37,9 +37,11 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("readtemp called. timeOuts 100 hard coded")
 		timeOuts := 100
+		broker := "broker:29099"
 		ctx, cancel := context.WithTimeout(context.Background(), time.Duration(timeOuts)*time.Second)
 		defer cancel()
-		pubsub.Sub(ctx, timeOuts)
+
+		pubsub.Sub(ctx,broker, timeOuts)
 	},
 }
 

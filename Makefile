@@ -1,6 +1,7 @@
 
 docker-build:
-	docker build --no-cache -t gcr.io/mchirico/goKafka:test -f Dockerfile .
+	docker build --no-cache -t gcr.io/mchirico/gopub:test -f Dockerfile_pub .
+	docker build --no-cache -t gcr.io/mchirico/readtemp:test -f Dockerfile_readtemp .
 
 push:
 	docker push gcr.io/mchirico/goKafka:test

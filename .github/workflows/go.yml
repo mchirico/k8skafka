@@ -53,9 +53,16 @@ jobs:
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        
+
+
     - name: Codecov Run
       run: |
         bash <(curl -s https://codecov.io/bash)
-        
-      
+
+
+
+    - name: Makefile docker-build
+      run: |
+        make docker-build
+
+

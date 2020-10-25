@@ -34,7 +34,7 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("pubtemp called")
-		timeOuts := 10000
+		timeOuts := 100000
 		broker := "kafka-instance-svc:9093"
 		pubsub.Pub(timeOuts,broker)
 

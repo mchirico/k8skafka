@@ -36,7 +36,7 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("readtemp called. timeOuts 100 hard coded")
-		timeOuts := 100
+		timeOuts := 10000
 		broker := "kafka-instance-svc:9093"
 		ctx, cancel := context.WithTimeout(context.Background(), time.Duration(timeOuts)*time.Second)
 		defer cancel()

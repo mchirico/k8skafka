@@ -28,13 +28,12 @@ cert-manager:
 	go get sigs.k8s.io/kind
 	${GOPATH}/bin/kind build node-image --image=master
 	${GOPATH}/bin/kind delete cluster
-	${GOPATH}/bin/kind create cluster --config calico/kind-calico.yaml
+	${GOPATH}/bin/kind create cluster --config calico/kind-calico-pvc.yaml
 	kubectl apply -f calico/ingress-nginx.yaml
 	kubectl apply -f calico/tigera-operator.yaml
 	kubectl apply -f calico/calicoNetwork.yaml
 	kubectl apply -f calico/calicoctl.yaml
 	kubectl apply -f calico/cert-manager.yaml
-	sleep 20
 	export VERSION=0.17.1
 
 #	kubectl kudo init

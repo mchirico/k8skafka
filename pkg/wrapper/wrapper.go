@@ -3,14 +3,14 @@ package wrapper
 import (
 	"context"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
-	"github.com/mchirico/goKafka/pkg"
+	"github.com/mchirico/goKafka/pkg/utils"
 )
 
 type PS struct {
 	Topic    string
 	Broker   string
 	NumParts int
-	kt       *pkg.KT
+	kt       *utils.KT
 }
 
 type Sender interface {
@@ -20,7 +20,7 @@ type Sender interface {
 func Create(topic, broker string, numparts int) (*PS, error) {
 
 	ps := &PS{topic, broker, numparts, nil}
-	ps.kt = pkg.NewKT(ps.Broker)
+	ps.kt = utils.NewKT(ps.Broker)
 
 	err := ps.kt.Create(ps.Topic, ps.NumParts, 1)
 	if err != nil {
@@ -43,7 +43,7 @@ func (ps *PS) Write(ctx context.Context, s Sender) (chan *kafka.Message, chan st
 
 func Read(ctx context.Context, topic, broker, group string,
 	msgchan chan kafka.Message, errorchan chan error) {
-	kt := pkg.NewKT(broker)
+	kt := utils.NewKT(broker)
 	go kt.Consumer(ctx, topic, group, msgchan, errorchan)
 
 }

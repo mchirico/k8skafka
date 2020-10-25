@@ -32,11 +32,11 @@ jobs:
    
     - name: Test pkg
       run: |
-        go test -race -v -coverprofile=coverage0.txt ./pkg
+        go test -race -v -coverprofile=coverage0.txt ./pkg/utils
 
     - name: Test wrapper
       run: |
-        go test -race -v -coverprofile=coverage1.txt ./wrapper
+        go test -race -v -coverprofile=coverage1.txt ./pkg/wrapper
 
 
     - name: Codecov Setup

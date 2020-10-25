@@ -35,7 +35,7 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("pubtemp called")
 		timeOuts := 10000
-		broker := "broker:29099"
+		broker := "kafka-instance-svc:9093"
 		pubsub.Pub(timeOuts,broker)
 
 	},

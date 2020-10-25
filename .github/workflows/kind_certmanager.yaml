@@ -1,0 +1,98 @@
+
+name: Kind CertManager
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+     
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    - name: Setup Go
+      uses: actions/setup-go@v2.1.1
+      with:
+        go-version: 1.15
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2.1.1
+      with:
+       check-latest: true
+ 
+ 
+    # install Kind
+    - name: Install Kind
+      run: |
+        GO111MODULE="on" go get sigs.k8s.io/kind@v0.8.1
+        kind version
+
+
+    # install kudo
+    - name: Install Kudo
+      run: |
+        export VERSION=0.17.1
+        OS=$(uname | tr '[:upper:]' '[:lower:]')
+        ARCH=$(uname -m)
+        wget -O kubectl-kudo https://github.com/kudobuilder/kudo/releases/download/v${VERSION}/kubectl-kudo_${VERSION}_${OS}_${ARCH}
+        chmod +x kubectl-kudo
+        # add to your path
+        sudo mv kubectl-kudo /usr/local/bin/kubectl-kudo
+
+
+    # install kubectl
+    - name: Install kubectl
+      run: |
+        curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+        chmod +x ./kubectl
+        sudo mv ./kubectl /usr/bin/kubectl
+ 
+    # Make
+    - name: make cert-manager
+      run: |
+        make cert-manager
+
+
+   # Wait until ready
+    - name: kubectl
+      run: |
+        num=$(kubectl get pods --field-selector=status.phase!=Running -A|wc -l)
+        while [ $num -gt 3 ]; 
+        do 
+          num=$(kubectl get pods --field-selector=status.phase!=Running -A|wc -l)
+          sleep 3
+          kubectl get pods --field-selector=status.phase!=Running -A
+        done
+
+
+   # kudo init
+    - name: kudo init
+      run: |
+        kubectl kudo init
+        sleep 20
+        kubectl kudo install zookeeper
+        sleep 120
+        kubectl kudo install kafka
+        sleep 60
+
+
+    # *** This goes after the problem. ****
+    - uses: mchirico/vscode-action@v1
+      with:
+        ngrok_token: ${{ secrets.NGROK_TOKEN }}
+        vscode_port: 8779
+        wait_duration: 1hr
+
+
+

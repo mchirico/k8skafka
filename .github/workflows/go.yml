@@ -37,9 +37,8 @@ jobs:
     - name: Test wrapper
       run: |
         go test -race -v -coverprofile=coverage1.txt ./wrapper
-        cat coverage0.txt coverage1.txt > coverage.txt
 
-        
+
     - name: Codecov Setup
       uses: codecov/codecov-action@v1
       with:

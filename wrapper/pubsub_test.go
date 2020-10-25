@@ -32,13 +32,13 @@ func startKafka() {
 }
 
 func stopKafka() {
-	ctx, cancel := context.WithTimeout(context.Background(), 5000*time.Millisecond)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
 	if err := exec.CommandContext(ctx, "bash", "-c", "cd ./../compose;docker-compose down").Run(); err != nil {
 		log.Printf("Error stopping compose: %v\n", err)
 	}
-
+	log.Printf("Kafka stopped wrapper\n")
 }
 
 type Msg struct {

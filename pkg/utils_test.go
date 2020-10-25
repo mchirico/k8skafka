@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
+	"log"
 	"os"
 	"os/exec"
 	"testing"
@@ -31,13 +32,15 @@ func startKafka() {
 }
 
 func stopKafka() {
-	ctx, cancel := context.WithTimeout(context.Background(), 9*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
 	if err := exec.CommandContext(ctx, "bash", "-c", "cd ./../compose;docker-compose down").Run(); err != nil {
 
 		fmt.Printf("Error stopping compose: %v\n", err)
 	}
+
+	log.Printf("Kafka stopped pkg\n")
 
 }
 

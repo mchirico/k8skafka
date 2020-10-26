@@ -179,8 +179,9 @@ func (kt *KT) Consumer(ctx context.Context, topic, group string,
 
 	fmt.Printf("Created Consumer %v\n", c)
 
-	//err = c.SubscribeTopics(topics, nil)
-	err = c.SubscribeTopics([]string{topic, "^aRegex.*[Tt]opic"}, nil)
+	// err = c.SubscribeTopics([]string{topic, "^aRegex.*[Tt]opic"}, nil)
+	err = c.SubscribeTopics([]string{topic}, nil)
+
 
 	if err != nil {
 		fmt.Printf("ERROR SubTopic")
@@ -210,8 +211,8 @@ func (kt *KT) Consumer(ctx context.Context, topic, group string,
 				c.Unassign()
 			case *kafka.Message:
 				msgchan <- *e
-				fmt.Printf("%% (c) Message on %s:\n%s\n",
-					e.TopicPartition, string(e.Value))
+				//fmt.Printf("%% (c) Message on %s:\n%s\n",
+				//	e.TopicPartition, string(e.Value))
 			case kafka.PartitionEOF:
 				fmt.Printf("%% Reached %v\n", e)
 			case kafka.Error:

@@ -3,3 +3,7 @@
 
 
 # goKafka
+
+
+## Running in k8s environment
+

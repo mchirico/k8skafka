@@ -33,7 +33,7 @@ func (m *Msg) Send(msgbyte chan []byte) {
 
 }
 
-func Pub(timeOutSeconds int,broker string) error {
+func Pub(timeOutSeconds int, broker string) error {
 	topic := "celcius-readings"
 	numparts := 1
 
@@ -68,7 +68,7 @@ func Pub(timeOutSeconds int,broker string) error {
 	return nil
 }
 
-func Sub(ctx context.Context,broker string, timeOutSeconds int) {
+func Sub(ctx context.Context, broker string, timeOutSeconds int) {
 	topic := "celcius-readings"
 
 	// Read
@@ -77,7 +77,6 @@ func Sub(ctx context.Context,broker string, timeOutSeconds int) {
 
 	wrapper.Read(ctx, topic, broker, "group", msgchan, errorchan)
 
-	msgResults := []string{}
 	run := true
 	for run {
 		select {
@@ -89,10 +88,14 @@ func Sub(ctx context.Context,broker string, timeOutSeconds int) {
 			if err != nil {
 				log.Printf("Sub read err: %s\n", err)
 			}
-			fmt.Printf("Message received\n"+
-				"%v\n", result)
-			msgResults = append(msgResults, string(res.Value))
+			fmt.Printf("%% (c) Message on %s:\n%s\n",
+				res.TopicPartition, string(res.Value))
 
+			fmt.Printf("JSON to Struct\n"+
+				"ID: %d"+
+				"Celcius: %f\n"+
+				"Hostname: %s\n"+
+				"Timestamp: %d\n", result.ID, result.Celcius, result.Hostname, result.TimeStamp)
 		case <-time.After(time.Duration(timeOutSeconds) * time.Second):
 			log.Printf("Timeout, case statement. End run.\n")
 			run = false

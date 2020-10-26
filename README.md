@@ -10,7 +10,7 @@ KinD cluster, with compiles Kubernetes 1.19 from source.
 
 ## Unit Tests:  docker-compose
 
-Note, docker-compose is launched via Go's tests.  Reference Test Main https://github.com/mchirico/gokafka/blob/74815c14058abd88ae84f49ec8df554ae2fd74c6/pkg/utils/utils_test.go#L14
+Note, docker-compose is launched via Go's tests.  Reference [Test Main](https://github.com/mchirico/gokafka/blob/74815c14058abd88ae84f49ec8df554ae2fd74c6/pkg/utils/utils_test.go#L14)
 
 The docker-compose file for testing can be found [here](https://github.com/mchirico/gokafka/blob/74815c14058abd88ae84f49ec8df554ae2fd74c6/compose/docker-compose.yml#L22).  Please note the default port has been changed to 29099.
 

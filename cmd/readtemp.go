@@ -18,7 +18,7 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"github.com/mchirico/goKafka/temperature/pubsub"
+	"github.com/mchirico/k8skafka/temperature/pubsub"
 	"time"
 
 	"github.com/spf13/cobra"

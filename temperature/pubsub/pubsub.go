@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
-	"github.com/mchirico/goKafka/pkg/wrapper"
-	"github.com/mchirico/goKafka/temperature/readings"
+	"github.com/mchirico/k8skafka/pkg/wrapper"
+	"github.com/mchirico/k8skafka/temperature/readings"
 	"log"
 	"time"
 )

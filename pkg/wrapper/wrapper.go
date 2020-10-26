@@ -3,7 +3,7 @@ package wrapper
 import (
 	"context"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
-	"github.com/mchirico/goKafka/pkg/utils"
+	"github.com/mchirico/k8skafka/pkg/utils"
 )
 
 type PS struct {

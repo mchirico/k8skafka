@@ -1,8 +1,8 @@
-![Go](https://github.com/mchirico/gokafka/workflows/Go/badge.svg)
-[![codecov](https://codecov.io/gh/mchirico/goKafka/branch/main/graph/badge.svg?token=AU1KLS2WIJ)](https://codecov.io/gh/mchirico/gokafka)
+![Go](https://github.com/mchirico/k8skafka/workflows/Go/badge.svg)
+[![codecov](https://codecov.io/gh/mchirico/k8skafka/branch/main/graph/badge.svg?token=AU1KLS2WIJ)](https://codecov.io/gh/mchirico/k8skafka)
 
 
-# goKafka
+# k8skafka
 
 The project code is tested with docker-compose; but, I thought it would be interesting to
 run the final test in a Kubernetes environment.  Below are instructions for installing a
@@ -10,9 +10,9 @@ KinD cluster, with compiles Kubernetes 1.19 from source.
 
 ## Unit Tests:  docker-compose
 
-Note, docker-compose is launched via Go's tests.  Reference [Test Main](https://github.com/mchirico/gokafka/blob/74815c14058abd88ae84f49ec8df554ae2fd74c6/pkg/utils/utils_test.go#L14)
+Note, docker-compose is launched via Go's tests.  Reference [Test Main](https://github.com/mchirico/k8skafka/blob/74815c14058abd88ae84f49ec8df554ae2fd74c6/pkg/utils/utils_test.go#L14)
 
-The docker-compose file for testing can be found [here](https://github.com/mchirico/gokafka/blob/74815c14058abd88ae84f49ec8df554ae2fd74c6/compose/docker-compose.yml#L22).  Please note the default port has been changed to 29099.
+The docker-compose file for testing can be found [here](https://github.com/mchirico/k8skafka/blob/74815c14058abd88ae84f49ec8df554ae2fd74c6/compose/docker-compose.yml#L22).  Please note the default port has been changed to 29099.
 
 ```bash
 # Generate temperature readings
@@ -85,8 +85,8 @@ Assuming docker, Go, kubectl,  and Kudo are installed, clone the directory.
 
 ### Clone the repo
 ```bash
-git clone https://github.com/mchirico/gokafka.git
-cd gokafka 
+git clone https://github.com/mchirico/k8skafka.git
+cd k8skafka 
 ```
 
 ### Build Kubernetes v1.19 from source

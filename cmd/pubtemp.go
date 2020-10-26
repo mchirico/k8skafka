@@ -17,7 +17,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/mchirico/goKafka/temperature/pubsub"
+	"github.com/mchirico/k8skafka/temperature/pubsub"
 
 	"github.com/spf13/cobra"
 )

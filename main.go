@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/mchirico/goKafka/cmd"
+import "github.com/mchirico/k8skafka/cmd"
 
 func main() {
   cmd.Execute()

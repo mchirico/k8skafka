@@ -47,11 +47,11 @@ cert-manager:
 
 .PHONY: push
 push:
-	docker push gcr.io/mchirico/goKafka:test
+	docker push gcr.io/mchirico/k8skafka:test
 
 
 build:
 	go build -v .
 
 run:
-	docker run --rm -it -p 3000:3000  gcr.io/mchirico/goKafka:test
+	docker run --rm -it -p 3000:3000  gcr.io/mchirico/k8skafka:test

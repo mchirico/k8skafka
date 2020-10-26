@@ -3,6 +3,12 @@
 
 
 # goKafka
+The project code is tested with docker-componse; but, I thought it would be interesting to
+run the final test in a Kubernetes environment.  Below are instructions for installing a
+KinD cluster, with compiles Kubernetes 1.19 from source.
+
+
+
 
 # Prerequisites
 
@@ -141,5 +147,3 @@ k logs --follow node-sub-795fd88bfd-k4jk8
 
 Below, example output with debugging information...
 ![image](https://user-images.githubusercontent.com/755710/97127219-64525e00-170f-11eb-9135-1923c5f89088.png)
-
-

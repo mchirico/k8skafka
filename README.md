@@ -3,14 +3,39 @@
 
 
 # goKafka
-The project code is tested with docker-componse; but, I thought it would be interesting to
+
+The project code is tested with docker-compose; but, I thought it would be interesting to
 run the final test in a Kubernetes environment.  Below are instructions for installing a
 KinD cluster, with compiles Kubernetes 1.19 from source.
 
+## Unit Tests:  docker-compose
+
+Note, docker-compose is launched via Go's tests.  Reference Test Main https://github.com/mchirico/gokafka/blob/74815c14058abd88ae84f49ec8df554ae2fd74c6/pkg/utils/utils_test.go#L14
+
+The docker-compose file for testing can be found [here](https://github.com/mchirico/gokafka/blob/74815c14058abd88ae84f49ec8df554ae2fd74c6/compose/docker-compose.yml#L22).  Please note the default port has been changed to 29099.
+
+```bash
+# Generate temperature readings
+go test -race -v -coverprofile=coverage3.txt ./temperature/readings
+
+# Raw Kafka pubSub functions
+go test -race -v -coverprofile=coverage0.txt ./pkg/utils
+
+# Raw functions combined or wrapped
+go test -race -v -coverprofile=coverage1.txt ./pkg/wrapper
+
+# Using wrapped functions
+go test -race -v -coverprofile=coverage2.txt ./temperature/pubsub
+
+# Testing temperature readings
+go test -race -v -coverprofile=coverage3.txt ./temperature/readings
+
+```
 
 
 
-# Prerequisites
+
+# Prerequisites for Full Integration Test (k8s environment)
 
 ## 1. Kind
 [KinD](https://kind.sigs.k8s.io/) 
@@ -147,3 +172,25 @@ k logs --follow node-sub-795fd88bfd-k4jk8
 
 Below, example output with debugging information...
 ![image](https://user-images.githubusercontent.com/755710/97127219-64525e00-170f-11eb-9135-1923c5f89088.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

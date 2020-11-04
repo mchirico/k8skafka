@@ -91,8 +91,8 @@ func TestPS_Write(t *testing.T) {
 	}
 
 	// Read
-	msgchan := make(chan kafka.Message, 1)
-	errorchan := make(chan error, 1)
+	msgchan := make(chan kafka.Message)
+	errorchan := make(chan error)
 	ctx2, cancel2 := context.WithTimeout(context.Background(), 50000*time.Millisecond)
 	defer cancel2()
 	Read(ctx2, topic, broker, "group", msgchan, errorchan)

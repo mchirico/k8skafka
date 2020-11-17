@@ -37,7 +37,7 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("readtemp called. timeOuts 100 hard coded")
 		timeOuts := 10000
-		broker := "kafka-instance-svc:9093"
+		broker := "broker:9092"
 		ctx, cancel := context.WithTimeout(context.Background(), time.Duration(timeOuts)*time.Second)
 		defer cancel()
 

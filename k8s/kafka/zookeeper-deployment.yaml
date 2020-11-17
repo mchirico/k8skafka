@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zookeeper
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: zookeeper
+  template:
+    metadata:
+      labels:
+        run: zookeeper
+    spec:
+      containers:
+        - name: zookeeper
+          image: 'confluentinc/cp-zookeeper:6.0.0'
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: ZOOKEEPER_CLIENT_PORT
+              value: "2181"
+            - name: ZOOKEEPER_TICK_TIME
+              value: "2000"
+          resources:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 1152Mi
+          ports:
+            - containerPort: 2181
+              name: zookeeper
